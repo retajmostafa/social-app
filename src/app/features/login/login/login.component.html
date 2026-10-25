@@ -1,0 +1,66 @@
+
+<div class="min-h-screen flex items-center justify-center px-4">
+
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    class="w-full max-w-lg border border-gray-300 rounded-2xl p-8 shadow-lg bg-white"
+  >
+
+    <h2 class="text-3xl font-bold">
+    Log in to Route Posts
+    </h2>
+    <p class="text-white-50">Log in and continue your social journey.</p>
+
+    <!-- Email -->
+    <div class="mb-1">
+      <label for="email" class="block mb-2 font-semibold">
+      </label>
+
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Email address"
+      />
+    </div>
+    @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
+         @if (loginForm.get('email')?.hasError('required')) {
+    <p class="text-red-600 text-sm font-medium">
+Email is required.
+    </p>
+  }
+   @if (loginForm.get('email')?.hasError('email')) {
+    <p class="text-red-600 text-sm font-medium">
+Please enter a valid email address.
+    </p>
+  }
+}
+
+    <div class="mb-2">
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your password"
+      />
+    </div>
+    @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+          @if (loginForm.get('password')?.hasError('required')) {
+    <p class="text-red-600 text-sm font-medium">
+password is required
+    </p>
+  }
+  @if (loginForm.get('password')?.hasError('pattern')) {
+    <p class="text-red-600 text-sm font-medium">
+Password must include uppercase, lowercase, number, and special character.
+    </p>
+  }
+    }
+
+ <button type="submit" class="form-btn">Log In</button>
+  </form>
+
+</div>

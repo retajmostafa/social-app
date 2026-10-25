@@ -1,0 +1,170 @@
+
+<div class="min-h-screen flex items-center justify-center px-4">
+
+  <form
+    [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    class="w-full max-w-lg border border-gray-300 rounded-2xl p-8 shadow-lg bg-white"
+  >
+
+    <h2 class="text-3xl font-bold text-center mb-8">
+      Create Account
+    </h2>
+
+    <!-- Name -->
+    <div class="mb-2">
+      <label for="name" class="block mb-2 font-semibold">
+      </label>
+
+      <input
+        formControlName="name"
+        type="text"
+        id="name"
+        placeholder="Full Name"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+    @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched){
+         @if (registerForm.get('name')?.hasError('required')) {
+    <p class="text-red-600 text-sm font-medium">
+      Name is required
+    </p>
+  }
+    }
+
+    <!-- Username -->
+    <div class="mb-1">
+      <label for="username" class="block mb-2 font-semibold">
+      </label>
+
+      <input
+        formControlName="username"
+        type="text"
+        id="username"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="username (optional)"
+      />
+    </div>
+        @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched){
+         @if (registerForm.get('username')?.hasError('minlength')) {
+    <p class="text-red-600 text-sm font-medium">
+  Username must be 3-30 chars (a-z, 0-9, _).
+    </p>
+  }
+           @if (registerForm.get('username')?.hasError('maxlength')) {
+    <p class="text-red-600 text-sm font-medium">
+  Username must be 3-30 chars (a-z, 0-9, _).
+    </p>
+  }
+    }
+
+    <!-- Email -->
+    <div class="mb-1">
+      <label for="email" class="block mb-2 font-semibold">
+      </label>
+
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Email address"
+      />
+    </div>
+    @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+         @if (registerForm.get('email')?.hasError('required')) {
+    <p class="text-red-600 text-sm font-medium">
+Email is required.
+    </p>
+  }
+   @if (registerForm.get('email')?.hasError('email')) {
+    <p class="text-red-600 text-sm font-medium">
+Please enter a valid email address.
+    </p>
+  }
+}
+
+    <!-- Date of Birth -->
+    <div class="mb-1">
+      <label for="dateOfBirth" class="block mb-2 font-semibold">
+      </label>
+
+      <input
+        formControlName="dateOfBirth"
+        type="date"
+        id="dateOfBirth"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+@if (registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched){
+         @if (registerForm.get('dateOfBirth')?.hasError('required')) {
+    <p class="text-red-600 text-sm font-medium">
+Date of birth is required.
+    </p>
+  } }
+
+    <!-- Gender -->
+     <div class="mb-2">
+  <select id="countries" class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" formControlName="gender">
+ <option value="" disabled>Choose a gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+  </select>
+  </div>
+
+
+
+
+      @if (registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched){
+          @if (registerForm.get('gender')?.hasError('required')) {
+    <p class="text-red-600 text-sm font-medium">
+Gender is required
+    </p>
+  }
+    }
+
+    <!-- Password -->
+    <div class="mb-2">
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your password"
+      />
+    </div>
+    @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+          @if (registerForm.get('password')?.hasError('required')) {
+    <p class="text-red-600 text-sm font-medium">
+password is required
+    </p>
+  }
+  @if (registerForm.get('password')?.hasError('pattern')) {
+    <p class="text-red-600 text-sm font-medium">
+Password must include uppercase, lowercase, number, and special character.
+    </p>
+  }
+    }
+    <!-- Confirm Password -->
+    <div class="mb-2">
+      <input
+        formControlName="rePassword"
+        type="password"
+        id="rePassword"
+        class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="confurm your password"
+      />
+    </div>
+      @if (registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched){
+          @if (registerForm.get('rePassword')?.hasError('mismatch')) {
+    <p class="text-red-600 text-sm font-medium">
+    Passwords do not match.
+    </p>
+  }
+    }
+<button type="submit" class="form-btn">
+  Create New Account
+</button>
+  </form>
+
+</div>
